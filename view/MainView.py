@@ -20,7 +20,6 @@ class MainView:
 
             st.session_state['main_view'] = self
         else:
-
             # Al exisir en la sesión entonces se actualizan los valores
             self.menu_actual = st.session_state.main_view.menu_actual
             self.controller = st.session_state.main_view.controller

@@ -3,9 +3,9 @@ import json
 
 class Criterio:
 
-    def __int__(self, descripcion, categoria):
+    def __int__(self, categoria, descripcion):
         self._descripcion = descripcion
         self._categoria = categoria
 
-    def __str__(self) -> str:
+    def __str__(self) -> None:
         return json.dump(self.__dict__)

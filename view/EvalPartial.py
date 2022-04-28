@@ -3,6 +3,17 @@ from model.EvalAnteproy import EvaluacionAnteproyecto
 
 """ Este archivo contine las funcionalidades de la vista relacionado con la evaluacion de los anteproyectos"""
 
+def crear_pdf(evaluacion_obj):
+    """
+    archivo = canvas.Canvas("Informacion_estudiante.pdf")
+    text = archivo.beginText(50, h - 50)
+    for dato in evaluacion_obj:
+        text.textLine(dato)
+    archivo.drawText(text)
+    archivo.save()
+    return archivo
+    """
+    pass
 
 def agregar_evaluacion(st, controller):
     # Objecto que modelará el formulario
@@ -14,6 +25,12 @@ def agregar_evaluacion(st, controller):
     evaluacion_obj.tema_proyecto = st.text_input("Tema del proyecto")
     evaluacion_obj.version_doc = st.number_input("Version del documento")
     enviado_btn = st.button("Submit")
+    creado_pdf = st.dowloand_button(
+     label="Download data as CSV",
+     data=crear_pdf(evaluacion_obj),
+     file_name='large_df.csv',
+     mime='text/csv',
+    )
 
     # Cuando se oprime el boton se agrega a la lista
     if enviado_btn:
