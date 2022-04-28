@@ -1,5 +1,6 @@
 from model.EvalAnteproy import EvaluacionAnteproyecto
 
+
 """ Este archivo contine las funcionalidades de la vista relacionado con la evaluacion de los anteproyectos"""
 
 
@@ -10,6 +11,8 @@ def agregar_evaluacion(st, controller):
     evaluacion_obj.id_estudiante = st.text_input("Id estudiante")
     # TODO
     # Agregar campo para leer el tema y la versión de la evaluación del proyecto
+    evaluacion_obj.tema_proyecto = st.text_input("Tema del proyecto")
+    evaluacion_obj.version_doc = st.number_input("Version del documento")
     enviado_btn = st.button("Submit")
 
     # Cuando se oprime el boton se agrega a la lista
@@ -23,9 +26,10 @@ def agregar_evaluacion(st, controller):
 
 def listar_evaluacion(st, controller):
     """Itera los elementos de evaluacion agregados y los muestra"""
-    st.title("Datos guardados... a mejorar la presentacion")
+    st.title("Datos guardados:")
     for evaluacion in controller.evaluaciones:
-        st.write(evaluacion.id_estudiante)
-        st.write(evaluacion.nombre)
-        st.write(evaluacion.tema_proyecto)
-        st.write(evaluacion.version_doc)
+        with st.container():
+            st.write(evaluacion.id_estudiante)
+            st.write(evaluacion.nombre)
+            st.write(evaluacion.tema_proyecto)
+            st.write(evaluacion.version_doc)

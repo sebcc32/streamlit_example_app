@@ -41,7 +41,6 @@ class MainView:
 
     def controlar_menu(self):
         """TODO poner aqui su codigo de interaccion"""
-        hp = 0
         if self.menu_actual == "About":
             texto = consultar_instrucciones()
             st.write(texto)
