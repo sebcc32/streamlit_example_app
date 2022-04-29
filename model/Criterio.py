@@ -3,7 +3,7 @@ import json
 
 class Criterio:
 
-    def __int__(self, categoria, descripcion):
+    def __init__(self, categoria, descripcion):
         self._descripcion = descripcion
         self._categoria = categoria
 

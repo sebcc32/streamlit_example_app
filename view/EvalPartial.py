@@ -1,19 +1,15 @@
 from model.EvalAnteproy import EvaluacionAnteproyecto
-
+from reportlab.pdfgen import canvas
 
 """ Este archivo contine las funcionalidades de la vista relacionado con la evaluacion de los anteproyectos"""
 
+
 def crear_pdf(evaluacion_obj):
-    """
     archivo = canvas.Canvas("Informacion_estudiante.pdf")
-    text = archivo.beginText(50, h - 50)
-    for dato in evaluacion_obj:
-        text.textLine(dato)
-    archivo.drawText(text)
+    archivo.drawString(100, 700, evaluacion_obj.id_estudiante)
+    archivo.drawString(100, 750, evaluacion_obj.nombre)
+    archivo.drawString(100, 800, evaluacion_obj.tema_proyecto)
     archivo.save()
-    return archivo
-    """
-    pass
 
 def agregar_evaluacion(st, controller):
     # Objecto que modelará el formulario
@@ -24,15 +20,17 @@ def agregar_evaluacion(st, controller):
     # Agregar campo para leer el tema y la versión de la evaluación del proyecto
     evaluacion_obj.tema_proyecto = st.text_input("Tema del proyecto")
     evaluacion_obj.version_doc = st.number_input("Version del documento")
-    enviado_btn = st.button("Submit")
-    creado_pdf = st.dowloand_button(
-     label="Download data as CSV",
-     data=crear_pdf(evaluacion_obj),
-     file_name='large_df.csv',
-     mime='text/csv',
-    )
+    col1, col2 = st.columns(2)
+    with col1:
+        enviado_btn = st.button("Submit")
+    with col2:
+        creado_pdf = st.button("Descargar Datos PDF")
 
     # Cuando se oprime el boton se agrega a la lista
+    if creado_pdf:
+        crear_pdf(evaluacion_obj)
+        st.success("El archvo se ha creado exitosamente")
+
     if enviado_btn:
         controller.agregar_evaluacion(evaluacion_obj)
         st.write("Evaluacion agregada exitosamente")
